@@ -3,18 +3,21 @@ package entites;
 public abstract class Account {
     private Integer accountNum;    
     private String name;
-    private double balance;
+    protected double balance;
 
+    public Account(){
+
+    }
     public Account(Integer accountNum, String name){
         this.setAccountNum(accountNum);
         this.setName(name);
     }
 
     //O metodo de deposito deve ser implementado em todo tipo de conta
-    public abstract void deposit();
+    public abstract void deposit(double depositValue);
 
     //O metodo de saque deve ser implementado em todo tipo de conta
-    public abstract double withDraw();
+    public abstract double withDraw(double withDrawValue);
 
     public Integer getAccountNum() {
         return accountNum;
