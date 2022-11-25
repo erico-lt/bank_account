@@ -45,7 +45,7 @@ public abstract class Account {
         StringBuilder stb = new StringBuilder();
         stb.append("Name : " + this.getName() + "\n");
         stb.append("Account Number: " + this.getAccountNum() + "\n");
-        stb.append("Balance: " + this.getBalance());
+        stb.append("Balance: " + this.getBalance() + "\n");
         return stb.toString();
     }
 
