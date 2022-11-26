@@ -1,5 +1,8 @@
 package entites;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import enums.Type;
 
 public abstract class AccountManagement extends Account{
@@ -24,9 +27,11 @@ public abstract class AccountManagement extends Account{
         this.balance = bonus;
     }
 
-    public boolean validDeposit(Type type, double balance) {
-        if (type == Type.EASYACCOUNT && balance < 2000.00) return true;
-        if(type == Type.SAVINGACCOUNT && balance < 4000.00) return true;
+    public boolean validDeposit(Type type, double balance, double depositValue) {
+        Date dataAtual = new Date();       
+        int hora = Integer.parseInt(new SimpleDateFormat("HH").format(dataAtual));        
+        if (type == Type.EASYACCOUNT && (balance + depositValue <= 2000.00)) return true;
+        if(type == Type.SAVINGACCOUNT && (balance + depositValue <= 4000.00) && hora <= 21) return true;
         if(type == Type.CURRENTACCOUNT) return true;
         return false;
     }

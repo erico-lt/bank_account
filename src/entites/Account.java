@@ -28,6 +28,10 @@ public abstract class Account {
         this.accountNum = accountNum;
     }
 
+    protected void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public double getBalance() {
         return this.balance;
     }    

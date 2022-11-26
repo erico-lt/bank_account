@@ -1,4 +1,4 @@
-package entites.accounTypes;
+package entites.accounts;
 
 import entites.AccountManagement;
 import enums.Type;
@@ -11,8 +11,11 @@ public class EasyAccount extends AccountManagement{
 
     @Override
     public void deposit(double depositValue) {
-        if(!validDeposit(this.getType(), this.getBalance())) {
-            //Criar exceção para tratamento de possivel erro de deposito
+        if(!validDeposit(this.getType(), this.getBalance(), depositValue)) {
+            //Exceção para tratamento de possivel erro de deposito
+            throw new AccountException("Tipo da conta incompativel com o deposito \n verfique se o saldo não está no limite");            
+        } else {
+            this.setBalance(this.getBalance() + depositValue);
         }              
     }
 
