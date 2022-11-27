@@ -35,15 +35,20 @@ public abstract class AccountManagement extends Account{
         if(type == Type.CURRENTACCOUNT) return true;
         return false;
     }
+    
+    public boolean validDeposit(Type type) {           
+        if(type == Type.CURRENTACCOUNT) return true;
+        return false;
+    }
 
     //metodos para validar saque dependendo da conta
     public boolean validWithDrawn(Type type, double balance, double withDraw) {
         Date dataAtual = new Date();       
-        int hora = Integer.parseInt(new SimpleDateFormat("HH").format(dataAtual));    
+        int hora = Integer.parseInt(new SimpleDateFormat("HH").format(dataAtual));        
             
-        if (type == Type.EASYACCOUNT && (balance == 2000.00) && (withDraw > 0) && (withDraw <= balance)) return true;
-        if(type == Type.SAVINGACCOUNT && (balance >= withDraw) && (withDraw > 0) && (hora <= 21 && hora > 8)) return true;
-        if(type == Type.CURRENTACCOUNT) return true;
+        if (type == Type.EASYACCOUNT && (balance == 2000.00) && (withDraw > 0) && (withDraw <= balance) && (hora < 16 && hora > 8)) return true;
+        if(type == Type.SAVINGACCOUNT && (balance >= withDraw) && (withDraw > 0) && (hora > 8 && hora <= 21 )) return true;
+        if(type == Type.CURRENTACCOUNT && (balance >= withDraw)) return true;
 
         return false;
     }
