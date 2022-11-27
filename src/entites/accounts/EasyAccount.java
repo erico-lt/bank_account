@@ -3,7 +3,7 @@ package entites.accounts;
 import entites.AccountManagement;
 import enums.Type;
 
-public class EasyAccount extends AccountManagement{
+public class EasyAccount extends AccountManagement{    
 
     public EasyAccount(Integer accountNum, String name, Type type, String email) {
         super(accountNum, name, type, email);       

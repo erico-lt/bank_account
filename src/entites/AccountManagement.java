@@ -7,12 +7,14 @@ import enums.Type;
 
 public abstract class AccountManagement extends Account{
     private String email;
-    private Type type;    
+    private Type type;   
+    private boolean status; 
 
     public AccountManagement(Integer accountNum, String name, Type type, String email) {
         super(accountNum, name);
         this.setType(type);
         this.setEmail(email);
+        this.setStatus(true);
         bonusOpenAccount(validType(this.getType())) ;
     }  
 
@@ -70,10 +72,20 @@ public abstract class AccountManagement extends Account{
         this.type = type;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+
     @Override
     public String toString() {
         StringBuilder stb = new StringBuilder();
         stb.append("Email: " + this.getEmail());
         return super.toString() + stb.toString();
-    }
+    }   
+
 }
