@@ -29,11 +29,9 @@ public class Bank {
         AccountManagement aux = (AccountManagement)searchAccount(this.listAccounts, name, numAccount);
         if (aux == null){
             throw new BankException("Essa conta não existe por favor tente novamente");
-        } else {
-            aux.setStatus(false);
-            listAccounts.remove(aux);            
-        }
-        
+        } 
+        aux.setStatus(false);
+        listAccounts.remove(aux);            
     }
 
     // Posteriormente deve ser criado uma pesquisa binaria, caso a lista estiver muito grande
