@@ -38,11 +38,22 @@ public class Bank {
     public Account searchAccount(List<Account> listAccount, String name, int numAccount) {
         Account aux = listAccount.stream().filter(x -> x.getName() == name && x.getAccountNum() == numAccount).findFirst().orElse(null);
         return aux;
-    }
+    }    
 
     public void addNewAccount (Account account) {
+        if(accountExiste(account, this.listAccounts)) {
+            throw new BankException("Conta já existente, ou dados por favor tente novamente");
+        }
         this.listAccounts.add(account);
     }
+
+    public boolean accountExiste(Account account,List<Account> listAccount) {
+        Account aux = listAccount.stream().filter(x -> x.getName().equals(account.getName()) && x.getAccountNum().equals(account.getAccountNum()) || x.getAccountNum().equals(account.getAccountNum())).findFirst().orElse(null);
+        if(aux != null) {
+            return true;
+        }
+        return false;
+    }  
 
     public void accounts() {
         for(Account x: listAccounts) {

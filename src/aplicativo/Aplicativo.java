@@ -7,7 +7,7 @@ import enums.Type;
 
 public class Aplicativo {
     public static void main(String[] args) throws Exception {
-       SavingAccount account = new SavingAccount(8533, "Erico", Type.SAVINGACCOUNT,"erico.blp@gmail.com");         
+       SavingAccount account = new SavingAccount(854, "Erico", Type.SAVINGACCOUNT,"erico.blp@gmail.com");         
        SavingAccount account2 = new SavingAccount(8533, "Erico", Type.SAVINGACCOUNT,"erico.blp@gmail.com");       
        EasyAccount account3 = new EasyAccount(853, "Erico Santana", Type.EASYACCOUNT,"erico.blp@gmail.com");
 
