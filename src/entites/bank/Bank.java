@@ -58,8 +58,7 @@ public class Bank {
     public void accounts() {
         for(Account x: listAccounts) {
             System.out.println(x.toString());
-            System.out.println();
-            System.out.println();
+            System.out.println();            
         }
     }
 

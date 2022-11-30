@@ -1,33 +1,28 @@
 package aplicativo;
 
-import entites.accounts.EasyAccount;
-import entites.accounts.SavingAccount;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import entites.bank.Bank;
-import enums.Type;
 
 public class Aplicativo {
-    public static void main(String[] args) throws Exception {
-       SavingAccount account = new SavingAccount(854, "Erico", Type.SAVINGACCOUNT,"erico.blp@gmail.com");         
-       SavingAccount account2 = new SavingAccount(8533, "Erico", Type.SAVINGACCOUNT,"erico.blp@gmail.com");       
-       EasyAccount account3 = new EasyAccount(853, "Erico Santana", Type.EASYACCOUNT,"erico.blp@gmail.com");
-
-       Bank bank = new Bank();       
-       bank.addNewAccount(account);
-       bank.addNewAccount(account2);
-       bank.addNewAccount(account3);       
-
-       System.out.println("Bank Name: " + bank.getName());
-       System.out.println(",________,\n"
-                        + "/_\\______\\ \n"+
-                          "|_|______|");
-       System.out.println();                   
-       bank.accounts(); 
-       System.out.println();
-       System.out.println("======================================");
-
-       bank.removeAccount("Erico Santana", 853);
-       System.out.println("Bank Name: " + bank.getName());
-       bank.accounts(); 
-               
+    public static void main(String[] args) throws Exception { 
+      Scanner sc = new Scanner(System.in);
+      Bank bank = new Bank();
+      while(true) {
+        UI.clearScreen(); 
+        try {
+          UI.initial(bank);
+          System.out.println("Escolha uma opcao para melhorar o atendimento");   
+          UI.opcaoesAtendimento();   
+          System.out.println("Digite uma opcao: ");
+          UI.selecopcao(sc.nextInt(), sc);         
+        
+        } catch(RuntimeException e){
+          throw new InputMismatchException("Erro os dados passados são invalidos valores aceitos de 1 ate 3");        
+        } finally {
+          sc.close();
+        }  
+      } 
+      
     }
 }

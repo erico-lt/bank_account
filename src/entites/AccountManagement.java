@@ -32,9 +32,9 @@ public abstract class AccountManagement extends Account{
 
     //metodo para validar o deposito de acordo com o tipo da conta
     public boolean validDeposit(Type type, double balance, double depositValue) {              
-        if (type == Type.EASYACCOUNT && (balance + depositValue <= 2000.00)) return true;
-        if(type == Type.SAVINGACCOUNT && (balance + depositValue <= 4000.00)) return true;
-        if(type == Type.CURRENTACCOUNT) return true;
+        if (type == Type.EASYACCOUNT && (balance + depositValue <= 2000.00) && this.getStatus() == true) return true;
+        if(type == Type.SAVINGACCOUNT && (balance + depositValue <= 4000.00) && this.getStatus() == true) return true;
+        if(type == Type.CURRENTACCOUNT && this.getStatus()) return true;
         return false;
     }
     
@@ -48,9 +48,9 @@ public abstract class AccountManagement extends Account{
         Date dataAtual = new Date();       
         int hora = Integer.parseInt(new SimpleDateFormat("HH").format(dataAtual));        
             
-        if (type == Type.EASYACCOUNT && (balance == 2000.00) && (withDraw > 0) && (withDraw <= balance) && (hora < 16 && hora > 8)) return true;
-        if(type == Type.SAVINGACCOUNT && (balance >= withDraw) && (withDraw > 0) && (hora > 8 && hora <= 21 )) return true;
-        if(type == Type.CURRENTACCOUNT && (balance >= withDraw)) return true;
+        if (type == Type.EASYACCOUNT && (balance == 2000.00) && (withDraw > 0) && (withDraw <= balance) && (hora < 16 && hora > 8) && this.getStatus() == true) return true;
+        if(type == Type.SAVINGACCOUNT && (balance >= withDraw) && (withDraw > 0) && (hora > 8 && hora <= 21 ) && this.getStatus() == true) return true;
+        if(type == Type.CURRENTACCOUNT && (balance >= withDraw) && this.getStatus() == true) return true;
 
         return false;
     }
@@ -72,7 +72,7 @@ public abstract class AccountManagement extends Account{
         this.type = type;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
