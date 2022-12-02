@@ -8,7 +8,7 @@ import entites.AccountManagement;
 
 public class Bank {
     private String name = "Brazil of Bank";
-    List<Account> listAccounts = new ArrayList<Account>();
+    public List<Account> listAccounts = new ArrayList<Account>();
 
     public Bank(){        
     }
@@ -16,14 +16,6 @@ public class Bank {
     public Bank(String name) {
         this.setName(name);
     }    
-
-    public String getName() {
-        return name;
-    }
-    
-    private void setName(String name) {
-        this.name = name;
-    }
 
     public void removeAccount (String name, int numAccount) {
         AccountManagement aux = (AccountManagement)searchAccount(this.listAccounts, name, numAccount);
@@ -53,13 +45,25 @@ public class Bank {
             return true;
         }
         return false;
-    }  
+    }      
 
     public void accounts() {
         for(Account x: listAccounts) {
             System.out.println(x.toString());
             System.out.println();            
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    private void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Account> getListAccounts() {
+        return this.listAccounts;
     }
 
 }
