@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import entites.Account;
+import entites.AccountManagement;
 import entites.accounts.CurrentAccount;
 import entites.accounts.EasyAccount;
 import entites.accounts.SavingAccount;
@@ -52,11 +53,13 @@ public class UI {
         switch(opcao) {            
             case 1:
                 sc.nextLine();
+                System.out.println("BEM VIANDO AO PROCEDIMENTO PARA ABRIR CONTA");
+                System.out.println();
                 System.out.print("Digite seu nome: ");                
-                String name = sc.nextLine();                                    
+                String name = sc.nextLine().toUpperCase();                                    
                 printNumsUseds(bank.getListAccounts()); 
                 System.out.print("Digite o numero da conta: ");                            
-                int numAccount = (Integer) sc.nextInt();                  
+                Integer numAccount =  sc.nextInt();                  
                 System.out.print("Escolha o tipo da conta [EASYACCOUNT,SAVINGACCOUNT,CURRENTACCOUNT]:");              
                 Type type = Type.valueOf(sc.next()); 
                 System.out.print("Digite seu email: ");
@@ -68,8 +71,20 @@ public class UI {
                 } else {
                     bank.addNewAccount(new CurrentAccount(numAccount, name, type, email));
                 }
+                break;
             case 2:    
+                sc.nextLine();
+                System.out.println("BEM VIANDO AO PROCEDIMENTO PARA ACESSO A CONTA");
                 System.out.println();
+                System.out.print("Digite seu nome: ");                
+                name = sc.nextLine().toUpperCase();                  
+                System.out.print("Digite o numero da conta: ");                            
+                numAccount =  sc.nextInt(); 
+                AccountManagement managementAccount = bank.searchAccount(bank.getListAccounts(), name, numAccount);
+                System.out.print("Digite o lavor de deposito: ");
+                double deposit = sc.nextDouble();
+                managementAccount.deposit(deposit);
+                break;
             default:                 
                 break;                
         }        

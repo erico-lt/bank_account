@@ -8,7 +8,7 @@ import entites.AccountManagement;
 
 public class Bank {
     private String name = "Brazil of Bank";
-    public List<Account> listAccounts = new ArrayList<Account>();
+    protected List<Account> listAccounts = new ArrayList<Account>();
 
     public Bank(){        
     }
@@ -27,8 +27,11 @@ public class Bank {
     }
 
     // Posteriormente deve ser criado uma pesquisa binaria, caso a lista estiver muito grande
-    public Account searchAccount(List<Account> listAccount, String name, int numAccount) {
-        Account aux = listAccount.stream().filter(x -> x.getName() == name && x.getAccountNum() == numAccount).findFirst().orElse(null);
+    public AccountManagement searchAccount(List<Account> listAccount, String name, Integer numAccount) {
+        AccountManagement aux = (AccountManagement)listAccount.stream().filter(x -> x.getName().equals(name) && x.getAccountNum().equals(numAccount)).findFirst().orElse(null);
+        if(aux == null) {
+            throw new BankException("Está conta não existe, por favor tente outra!");
+        }
         return aux;
     }    
 
@@ -47,11 +50,12 @@ public class Bank {
         return false;
     }      
 
-    public void accounts() {
+    public String accounts() {
+        StringBuilder stb = new StringBuilder();
         for(Account x: listAccounts) {
-            System.out.println(x.toString());
-            System.out.println();            
+            stb.append(x.toString());     
         }
+        return stb.toString();
     }
 
     public String getName() {
