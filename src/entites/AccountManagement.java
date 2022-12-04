@@ -2,7 +2,9 @@ package entites;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
+import entites.accounts.AccountException;
 import enums.Type;
 
 public abstract class AccountManagement extends Account{
@@ -34,7 +36,7 @@ public abstract class AccountManagement extends Account{
     public boolean validDeposit(Type type, double balance, double depositValue) {              
         if (type == Type.EASYACCOUNT && (balance + depositValue <= 2000.00) && this.getStatus() == true) return true;
         if(type == Type.SAVINGACCOUNT && (balance + depositValue <= 4000.00) && this.getStatus() == true) return true;
-        if(type == Type.CURRENTACCOUNT && this.getStatus()) return true;
+        if(type == Type.CURRENTACCOUNT && this.getStatus() == true) return true;
         return false;
     }
     
@@ -53,6 +55,18 @@ public abstract class AccountManagement extends Account{
         if(type == Type.CURRENTACCOUNT && (balance >= withDraw) && this.getStatus() == true) return true;
 
         return false;
+    }
+
+    //metodo para fechar conta
+    public void closeAccount(Scanner sc) {
+        if(this.getBalance() > 0) {
+            throw new AccountException("A conta ainda possui valor em caixa, por favor faça um deposito:");
+        }
+        System.out.println("Para confirmar o fechamento da conta digite [S/N]");
+        String opcao = sc.next();
+        if(opcao.equals("s") || opcao.equals("S")) {
+            this.setStatus(false);
+        }        
     }
 
     //Metodos acessores e modificadores

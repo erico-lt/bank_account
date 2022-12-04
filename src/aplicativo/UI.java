@@ -41,6 +41,21 @@ public class UI {
         return opcao;        
     }
 
+    public static Integer accountOptions(Scanner sc) {                
+        System.out.println();        
+        System.out.println("     ╔═══════════╗ \n"+ 
+                           "         OPÇÕES    \n" +         
+                           "     ╚═══════════╝");
+        
+        System.out.println("[1] depositio");
+        System.out.println("[2] saque");
+        System.out.println("[3] para fechamento de conta");   
+        System.out.println();     
+        System.out.println("Digite uma opcao: ");
+        Integer opcao =  sc.nextInt();        
+        return opcao;        
+    }
+
     public static void printNumsUseds(List<Account> listAccouts) {
         System.out.print("Numeros ja usados: ");
         for(Account x: listAccouts) {
@@ -81,9 +96,17 @@ public class UI {
                 System.out.print("Digite o numero da conta: ");                            
                 numAccount =  sc.nextInt(); 
                 AccountManagement managementAccount = bank.searchAccount(bank.getListAccounts(), name, numAccount);
-                System.out.print("Digite o lavor de deposito: ");
-                double deposit = sc.nextDouble();
-                managementAccount.deposit(deposit);
+                Integer selectOption = accountOptions(sc);
+                if(selectOption.equals(1)) {
+                    System.out.print("Digite o valor para deposito: ");
+                    managementAccount.deposit(sc.nextDouble());
+                } 
+                if(selectOption.equals(2)) {
+                    System.out.print("Digite o valor para saque: ");
+                    managementAccount.withDraw(sc.nextDouble());
+                }                   
+                bank.removeAccount(managementAccount, bank.getListAccounts());
+                               
                 break;
             default:                 
                 break;                

@@ -8,7 +8,7 @@ import entites.AccountManagement;
 
 public class Bank {
     private String name = "Brazil of Bank";
-    protected List<Account> listAccounts = new ArrayList<Account>();
+    protected List<Account> listAccounts = new ArrayList<Account>();    
 
     public Bank(){        
     }
@@ -17,13 +17,15 @@ public class Bank {
         this.setName(name);
     }    
 
-    public void removeAccount (String name, int numAccount) {
-        AccountManagement aux = (AccountManagement)searchAccount(this.listAccounts, name, numAccount);
-        if (aux == null){
+    public void removeAccount (AccountManagement account, List<Account> list) {
+        if(!accountExiste(account, list)){
             throw new BankException("Essa conta não existe por favor tente novamente");
-        } 
-        aux.setStatus(false);
-        listAccounts.remove(aux);            
+        }
+        if(account.getBalance() > 0) {
+            throw new BankException("A conta ainda possui valor em caixa, por favor faça um deposito:");
+        }
+        account.setStatus(false);        
+        listAccounts.remove(account);                   
     }
 
     // Posteriormente deve ser criado uma pesquisa binaria, caso a lista estiver muito grande
@@ -69,5 +71,6 @@ public class Bank {
     public List<Account> getListAccounts() {
         return this.listAccounts;
     }
+    
 
 }
