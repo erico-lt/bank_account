@@ -25,7 +25,7 @@ public class Bank {
             throw new BankException("A conta ainda possui valor em caixa, por favor faça um deposito:");
         }
         account.setStatus(false);        
-        listAccounts.remove(account);                   
+        list.remove(account);                   
     }
 
     // Posteriormente deve ser criado uma pesquisa binaria, caso a lista estiver muito grande

@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import entites.accounts.EasyAccount;
 import entites.bank.Bank;
+import entites.bank.BankException;
 import enums.Type;
 
 public class Aplicativo {
@@ -23,8 +24,12 @@ public class Aplicativo {
           System.out.println("Escolha uma opcao para melhorar o atendimento");                        
           int opcao = UI.opcaoesAtendimento(sc);
           UI.selecopcao(opcao, sc, bank);           
-        } catch(InputMismatchException e){
-          throw new InputMismatchException("Erro os dados passados são invalidos");        
+        }catch(BankException e) {
+          System.out.println("Erro " + e.getMessage());
+          sc.nextLine();
+        }catch(InputMismatchException e){
+          System.out.println("Erro de dado " + e.getMessage());  
+          sc.nextLine();      
         }
         
         System.out.println(bank.accounts());
@@ -34,7 +39,7 @@ public class Aplicativo {
           continuE = true;
         } else {
           continuE = false;
-        }        
+        }       
         
       }
     }

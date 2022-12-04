@@ -1,6 +1,8 @@
 package entites.accounts;
 
-public class AccountException extends RuntimeException{
+import entites.bank.BankException;
+
+public class AccountException extends BankException{
     public AccountException(String msg) {
         super(msg);
     }

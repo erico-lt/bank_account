@@ -2,9 +2,6 @@ package entites;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
-
-import entites.accounts.AccountException;
 import enums.Type;
 
 public abstract class AccountManagement extends Account{
@@ -50,24 +47,12 @@ public abstract class AccountManagement extends Account{
         Date dataAtual = new Date();       
         int hora = Integer.parseInt(new SimpleDateFormat("HH").format(dataAtual));        
             
-        if (type == Type.EASYACCOUNT && (balance == 2000.00) && (withDraw > 0) && (withDraw <= balance) && (hora < 16 && hora > 8) && this.getStatus() == true) return true;
+        if (type == Type.EASYACCOUNT && (balance <= withDraw) && (withDraw > 0) && (balance == 2000.00) && (hora > 8 && hora < 19) && this.getStatus() == true) return true;
         if(type == Type.SAVINGACCOUNT && (balance >= withDraw) && (withDraw > 0) && (hora > 8 && hora <= 21 ) && this.getStatus() == true) return true;
         if(type == Type.CURRENTACCOUNT && (balance >= withDraw) && this.getStatus() == true) return true;
 
         return false;
-    }
-
-    //metodo para fechar conta
-    public void closeAccount(Scanner sc) {
-        if(this.getBalance() > 0) {
-            throw new AccountException("A conta ainda possui valor em caixa, por favor faça um deposito:");
-        }
-        System.out.println("Para confirmar o fechamento da conta digite [S/N]");
-        String opcao = sc.next();
-        if(opcao.equals("s") || opcao.equals("S")) {
-            this.setStatus(false);
-        }        
-    }
+    }   
 
     //Metodos acessores e modificadores
     public String getEmail() {

@@ -1,5 +1,6 @@
 package aplicativo;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,7 +38,10 @@ public class UI {
         System.out.println("[3] para fechamento de conta");   
         System.out.println();     
         System.out.println("Digite uma opcao: ");
-        Integer opcao =  sc.nextInt();        
+        Integer opcao =  sc.nextInt();
+        if((opcao != 1) && (opcao != 2) && (opcao != 3)) {
+            throw new InputMismatchException("Problemas com dados passados, valores aceitos de 1 ate 3");
+        }        
         return opcao;        
     }
 
@@ -99,14 +103,15 @@ public class UI {
                 Integer selectOption = accountOptions(sc);
                 if(selectOption.equals(1)) {
                     System.out.print("Digite o valor para deposito: ");
-                    managementAccount.deposit(sc.nextDouble());
+                    double deposit = sc.nextDouble();
+                    managementAccount.deposit(deposit);
                 } 
                 if(selectOption.equals(2)) {
                     System.out.print("Digite o valor para saque: ");
                     managementAccount.withDraw(sc.nextDouble());
-                }                   
-                bank.removeAccount(managementAccount, bank.getListAccounts());
-                               
+                }else {
+                  bank.removeAccount(managementAccount, bank.getListAccounts());  
+                }                                    
                 break;
             default:                 
                 break;                

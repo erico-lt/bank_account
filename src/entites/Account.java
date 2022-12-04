@@ -17,7 +17,7 @@ public abstract class Account {
     public abstract void deposit(double depositValue);
 
     //O metodo de saque deve ser implementado em todo tipo de conta
-    public abstract double withDraw(double withDrawValue);
+    public abstract void withDraw(double withDrawValue);
 
     public Integer getAccountNum() {
         return accountNum;

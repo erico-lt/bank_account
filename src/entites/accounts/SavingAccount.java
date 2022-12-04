@@ -21,13 +21,12 @@ public class SavingAccount  extends AccountManagement{
     }
 
     @Override
-    public double withDraw(double withDrawValue) {
+    public void withDraw(double withDrawValue) {
         if(!validWithDrawn(getType(), this.getBalance(), withDrawValue)) {
             throw new AccountException("Por favor confira se o tipo da conta é legivel para saque desta quantia, e verifique o saldo, seguido do horario");
         } else {
             this.setBalance(this.getBalance() - withDrawValue);
-        }
-        return withDrawValue;        
+        }              
     }
 
     @Override
