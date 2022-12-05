@@ -33,6 +33,8 @@ public class Aplicativo {
         }
         
         System.out.println(bank.accounts());
+        System.out.println();
+        System.out.println();
         System.out.print("Deseja mais algum atendimento[Yes/No]:");
         String resp = sc.next();
         if(resp.equals("Yes") || resp.equals("yes")){

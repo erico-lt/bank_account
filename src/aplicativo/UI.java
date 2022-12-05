@@ -34,14 +34,14 @@ public class UI {
                            "     ╚═══════════╝");
         
         System.out.println("[1] para abrir conta");
-        System.out.println("[2] para acessar conta");
-        System.out.println("[3] para fechamento de conta");   
+        System.out.println("[2] para acessar conta");          
         System.out.println();     
-        System.out.println("Digite uma opcao: ");
+        System.out.print("Digite uma opcao: ");
         Integer opcao =  sc.nextInt();
-        if((opcao != 1) && (opcao != 2) && (opcao != 3)) {
+        if((opcao != 1) && (opcao != 2)) {
             throw new InputMismatchException("Problemas com dados passados, valores aceitos de 1 ate 3");
-        }        
+        }       
+        System.out.println(); 
         return opcao;        
     }
 
@@ -55,7 +55,7 @@ public class UI {
         System.out.println("[2] saque");
         System.out.println("[3] para fechamento de conta");   
         System.out.println();     
-        System.out.println("Digite uma opcao: ");
+        System.out.print("Digite uma opcao: ");
         Integer opcao =  sc.nextInt();        
         return opcao;        
     }
@@ -102,13 +102,13 @@ public class UI {
                 AccountManagement managementAccount = bank.searchAccount(bank.getListAccounts(), name, numAccount);
                 Integer selectOption = accountOptions(sc);
                 if(selectOption.equals(1)) {
-                    System.out.print("Digite o valor para deposito: ");
-                    double deposit = sc.nextDouble();
-                    managementAccount.deposit(deposit);
-                } 
-                if(selectOption.equals(2)) {
+                    System.out.print("Digite o valor para deposito: ");                    
+                    managementAccount.deposit(sc.nextDouble());
+                    System.out.println();
+                }else if(selectOption.equals(2)) {
                     System.out.print("Digite o valor para saque: ");
                     managementAccount.withDraw(sc.nextDouble());
+                    System.out.println();
                 }else {
                   bank.removeAccount(managementAccount, bank.getListAccounts());  
                 }                                    

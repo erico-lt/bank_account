@@ -22,7 +22,7 @@ public class Bank {
             throw new BankException("Essa conta não existe por favor tente novamente");
         }
         if(account.getBalance() > 0) {
-            throw new BankException("A conta ainda possui valor em caixa, por favor faça um deposito:");
+            throw new BankException("A conta ainda possui valor em caixa, por favor saque a quantia antes");
         }
         account.setStatus(false);        
         list.remove(account);                   
