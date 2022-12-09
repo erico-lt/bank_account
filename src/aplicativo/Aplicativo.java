@@ -9,7 +9,7 @@ import entites.bank.BankException;
 import enums.Type;
 
 public class Aplicativo {
-    public static void main(String[] args) throws Exception { 
+    public static void main(String[] args) { 
       Scanner sc = null;
       Bank bank = new Bank(); 
       boolean continuE = true;   
