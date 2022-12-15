@@ -47,7 +47,7 @@ public abstract class AccountManagement extends Account{
         Date dataAtual = new Date();       
         int hora = Integer.parseInt(new SimpleDateFormat("HH").format(dataAtual));        
             
-        if (type == Type.EASYACCOUNT && (balance <= withDraw) && (withDraw > 0) && (balance == 2000.00) && (hora > 8 && hora < 19) && this.getStatus() == true) return true;
+        if (type == Type.EASYACCOUNT && (balance >= withDraw) && (withDraw > 0) && (balance == 2000.00) && (hora > 8 && hora < 19) && this.getStatus() == true) return true;
         if(type == Type.SAVINGACCOUNT && (balance >= withDraw) && (withDraw > 0) && (hora > 8 && hora <= 21 ) && this.getStatus() == true) return true;
         if(type == Type.CURRENTACCOUNT && (balance >= withDraw) && this.getStatus() == true) return true;
 

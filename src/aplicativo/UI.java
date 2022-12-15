@@ -98,7 +98,7 @@ public class UI {
                 break;
             case 2:    
                 sc.nextLine();
-                System.out.println("BEM VIANDO AO PROCEDIMENTO PARA ACESSO A CONTA");
+                System.out.println("BEM VINDO AO PROCEDIMENTO PARA ACESSO A CONTA");
                 System.out.println();
                 System.out.print("Digite seu nome: ");                
                 name = sc.nextLine().toUpperCase();                  
