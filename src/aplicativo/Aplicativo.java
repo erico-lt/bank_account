@@ -2,27 +2,15 @@ package aplicativo;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-//import entites.accounts.EasyAccount;
 import entites.bank.Bank;
 import entites.bank.BankException;
-//import enums.Type;
+;
 
 public class Aplicativo {
-<<<<<<< HEAD
   public static void main(String[] args) throws Exception { 
     Scanner sc = new Scanner(System.in);
     Bank bank = new Bank(); 
-    boolean continuE = true;       
-=======
-    public static void main(String[] args) { 
-      Scanner sc = null;
-      Bank bank = new Bank(); 
-      boolean continuE = true;   
-      EasyAccount account = new EasyAccount(321, "ERICO", Type.EASYACCOUNT,"erico.blp@gmail.com");  
-      bank.addNewAccount(account);  
->>>>>>> 2bae1f27d2e0eb5888747227108f5edfd053c2c9
-
+    boolean continuE = true;  
     while(continuE == true) {
       UI.clearScreen();       
       try {          
